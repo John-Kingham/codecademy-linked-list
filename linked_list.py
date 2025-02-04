@@ -48,13 +48,11 @@ class LinkedList:
                 next_node = current_node.get_next_node()
 
     def swap_nodes(self, value1, value2):
-        if value1 == value2:
-            return 'No swap needed - values are identical'
+        if value1 == value2: return 'No swap needed - values are identical'
         node1, node1_prev = self.find_node_and_previous(value1)
         node2, node2_prev = self.find_node_and_previous(value2)
-        if node1 is None or node2 is None:
-            return 'Swap not possible - one or more values missing from list'
-        if node1_prev is None:
+        if node1 is None or node2 is None: return 'Swap not possible - one or more values missing from list'
+        if node1_prev is None: 
             self.head_node = node2
         else:
             node1_prev.set_next_node(node2)
@@ -70,9 +68,40 @@ class LinkedList:
     def find_node_and_previous(self, value):
         node = self.head_node
         previous_node = None
-        while node is not None:
-            if node.get_value() == value:
-                break
+        while node is not None and node.get_value() != value:
             previous_node = node
             node = node.get_next_node()
         return node, previous_node
+    
+    def length(self):
+        length = 0
+        node = self.head_node
+        while node is not None:
+            length += 1
+            node = node.get_next_node()
+        return length
+    
+    def nth_last_node(self, n):
+        tail = self.head_node
+        nth_from_last = None
+        counter = 1
+        while tail is not None:
+            tail = tail.get_next_node()
+            counter += 1
+            if counter <= n+1: continue
+            if nth_from_last == None:
+                nth_from_last = self.head_node
+            else:
+                nth_from_last = nth_from_last.get_next_node()
+        return nth_from_last
+
+    def find_middle(self):
+        fast = self.head_node
+        slow = self.head_node
+        while fast is not None:
+            fast = fast.get_next_node()
+            if fast is not None:
+                fast = fast.get_next_node()
+                slow = slow.get_next_node()
+        return slow 
+    
