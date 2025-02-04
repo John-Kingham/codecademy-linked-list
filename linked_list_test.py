@@ -32,5 +32,17 @@ class TestLinkedList(unittest.TestCase):
         ll.remove_node(20)
         self.assertEqual(ll.get_head_node().get_next_node().get_value(), 10)
 
+    def test_swap_nodes(self):
+        ll = LinkedList(10)
+        ll.insert_beginning(20)
+        ll.insert_beginning(30)
+        message = ll.swap_nodes(10, 20)
+        self.assertEqual(ll.stringify_list(), '30\n10\n20\n')
+        self.assertEqual(message, None)
+        message = ll.swap_nodes(10, 10)
+        self.assertEqual(message, 'No swap needed - values are identical')
+        message = ll.swap_nodes(10, 1)
+        self.assertEqual(message, 'Swap not possible - one or more values missing from list')        
+
 if __name__ == '__main__':
     unittest.main()
