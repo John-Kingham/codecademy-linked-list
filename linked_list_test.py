@@ -1,6 +1,7 @@
 import unittest
 from linked_list import *
 
+
 class TestLinkedList(unittest.TestCase):
 
     def setUp(self):
@@ -15,7 +16,7 @@ class TestLinkedList(unittest.TestCase):
         node1 = Node(1)
         node2 = Node(2)
         node1.set_next_node(node2)
-        self.assertEqual(node1.get_next_node(), node2)      
+        self.assertEqual(node1.get_next_node(), node2)
 
     def test_new_linked_list(self):
         self.assertEqual(self.ll.get_head_node().get_value(), 1)
@@ -25,7 +26,7 @@ class TestLinkedList(unittest.TestCase):
         self.assertEqual(self.ll.get_head_node().get_value(), 5)
 
     def test_stringify_list(self):
-        self.assertEqual(self.ll.stringify_list(), '1\n2\n3\n')
+        self.assertEqual(self.ll.stringify_list(), "1\n2\n3\n")
 
     def test_remove_node(self):
         self.ll.remove_node(2)
@@ -33,12 +34,14 @@ class TestLinkedList(unittest.TestCase):
 
     def test_swap_nodes(self):
         message = self.ll.swap_nodes(1, 2)
-        self.assertEqual(self.ll.stringify_list(), '2\n1\n3\n')
+        self.assertEqual(self.ll.stringify_list(), "2\n1\n3\n")
         self.assertEqual(message, None)
         message = self.ll.swap_nodes(1, 1)
-        self.assertEqual(message, 'No swap needed - values are identical')
+        self.assertEqual(message, "No swap needed - values are identical")
         message = self.ll.swap_nodes(10, 1)
-        self.assertEqual(message, 'Swap not possible - one or more values missing from list')        
+        self.assertEqual(
+            message, "Swap not possible - one or more values missing from list"
+        )
 
     def test_length(self):
         self.assertEqual(self.ll.length(), 3)
@@ -49,5 +52,6 @@ class TestLinkedList(unittest.TestCase):
     def test_find_middle(self):
         self.assertEqual(self.ll.find_middle().get_value(), 2)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
